@@ -1,0 +1,51 @@
+vi:
+  erp:
+    tours:
+      backend:
+        categories:
+          create:
+            success: "Thêm chuyên mục thành công."
+          update:
+            success: "Cập nhật chuyên mục thành công."
+          destroy:
+            success: "Xóa chuyên mục thành công."
+          delete_all:
+            success: "Xóa chuyên mục được chọn thành công."
+          archive:
+            success: "Ẩn chuyên mục thành công."
+          unarchive:
+            success: "Hiện chuyên mục thành công."
+          archive_all:
+            success: "Ẩn chuyên mục được chọn thành công."
+          unarchive_all:
+            success: "Hiện chuyên mục được chọn thành công."
+          index:
+            categories: "Chuyên mục tour"                        
+            create: "Thêm chuyên mục"
+            delete: "Xóa chuyên mục"
+            name: "Tên chuyên mục"
+            parent_category: "Chuyên mục cha"
+            tour_number: "Số lượng tour"
+            archive_confirm: "Bạn có chắc muốn ngưng sử dụng các chuyên mục này?"
+            unarchive_confirm: "Bạn có muốn sử dụng lại các chuyên mục này?"
+          list:
+            delete: "Xóa chuyên mục"
+            name: "Tên chuyên mục"
+            parent_category: "Chuyên mục cha"
+            tour_number: "Số lượng tour"
+            no_matching_records_found: "Danh sách chuyên mục hiện tại đang trống."
+            archive_confirm: "Bạn có chắc muốn ngưng sử dụng chuyên mục này?"
+            unarchive_confirm: "Bạn có muốn sử dụng lại chuyên mục này?"
+          new:
+            categories: "Chuyên mục tour"
+            create: "Thêm chuyên mục"
+          edit:
+            categories: "Chuyên mục tour"
+            create: "Thêm chuyên mục"
+          form:
+            name: "Tên chuyên mục"
+            enter_name: "Nhập tên chuyên mục..."
+            description: "Mô tả chuyên mục"
+            enter_description: "Nhập mô tả chuyên mục"
+            parent_category: "Chuyên mục cha"
+            choose_parent_category: "Chọn chuyên mục cha"
