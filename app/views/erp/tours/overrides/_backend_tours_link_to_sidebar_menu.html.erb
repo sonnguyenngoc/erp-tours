@@ -1,8 +1,12 @@
-<li class="nav-item <%= "active open" if ["erp/tours/backend/categories"].include?(params[:controller]) %>">
+<li class="nav-item <%= "active open" if ["erp/tours/backend/categories",
+                                          "erp/tours/backend/tours",
+                                          "erp/tours/backend/menus"].include?(params[:controller]) %>">
     <a href="javascript:;" class="nav-link nav-toggle">
         <i class="fa fa-archive"></i>
         <span class="title"><%= t('.tours') %></span>
-        <% if ["erp/tours/backend/categories"].include?(params[:controller]) %>
+        <% if ["erp/tours/backend/categories",
+               "erp/tours/backend/tours",
+               "erp/tours/backend/menus"].include?(params[:controller]) %>
             <span class="selected"></span>
             <span class="arrow open"></span>
         <% else %>
@@ -10,10 +14,20 @@
         <% end %>
     </a>
     <ul class="sub-menu">
+        <li class="nav-item <%= "active" if ["erp/tours/backend/tours"].include?(params[:controller]) %>">
+            <a href="<%= erp_tours.backend_tours_path %>" class="nav-link ">
+                <span class="title"><%= t('.tours') %></span>
+            </a>
+        </li>  
         <li class="nav-item <%= "active" if ["erp/tours/backend/categories"].include?(params[:controller]) %>">
             <a href="<%= erp_tours.backend_categories_path %>" class="nav-link ">
                 <span class="title"><%= t('.categories') %></span>
             </a>
-        </li>        
+        </li>
+        <li class="nav-item <%= "active" if ["erp/tours/backend/menus"].include?(params[:controller]) %>">
+            <a href="<%= erp_tours.backend_menus_path %>" class="nav-link ">
+                <span class="title"><%= t('.menus') %></span>
+            </a>
+        </li>
     </ul>
 </li>

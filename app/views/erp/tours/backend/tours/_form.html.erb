@@ -1,0 +1,287 @@
+<%= form_for([erp_tours, :backend, tour], html: {multipart: true}) do |f| %>
+    <div class="form-body">
+        <div class="row">
+            <div class="col-md-2">
+                <%= erp_form_control('image', {
+                    img_src: tour.image_url.small,
+                    name: 'tour[image_url]',
+                    width: 150,
+                    height: 150
+                }) %>
+            </div>
+            <div class="col-md-10">
+                <div class="portlet light bordered">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <%= erp_form_control("text", {
+                                name: 'tour[name]',
+                                value: tour.name,
+                                label: t('.name'),
+                                help: t('.help_tour_name'),
+                                placeholder: t('.placeholder_tour_name'),
+                                required: true,
+                                errors: tour.errors.full_messages_for(:name)
+                            }) %>
+                        </div>
+                        <div class="col-md-6">
+                            <%= erp_form_control("dataselect", {
+                                name: 'tour[category_id]',
+                                value: tour.category_id,
+                                text: tour.category_name,
+                                placeholder: t('.choose_category'),
+                                label: t('.category'),
+                                help: t('.help_category'),
+                                url: erp_tours.dataselect_backend_categories_path(format: 'json'),
+                                create: {
+                                    url: erp_tours.new_backend_category_path,
+                                    title: t('.create_category'),
+                                    container_selector: '.new_category',
+                                    input_selector: 'input[name="category[name]"]'
+                                },
+                                edit: {
+                                    url: erp_tours.edit_backend_category_path(id: ':value'),
+                                    title: t('.edit_category'),
+                                    container_selector: '.edit_category',
+                                },
+                                required: true,
+                                errors: tour.errors.full_messages_for(:category_id)
+                            }) %>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <%= erp_form_control("number", {
+                                name: 'tour[price]',
+                                value: tour.price,
+                                label: t('.price'),
+                                help: t('.help_tour_price'),
+                                placeholder: t('.placeholder_tour_price'),
+                                required: true,
+                                errors: tour.errors.full_messages_for(:price)
+                            }) %>
+                        </div>
+                        <div class="col-md-4">
+                            <%= erp_form_control("text", {
+                                name: 'tour[area_position]',
+                                value: tour.area_position,
+                                label: t('.area_position'),
+                                help: t('.help_area_position'),
+                                placeholder: t('.placeholder_area_position'),
+                                required: true,
+                                errors: tour.errors.full_messages_for(:area_position)
+                            }) %>
+                        </div>
+                        <div class="col-md-4">
+                            <%= erp_form_control("text", {
+                                name: 'tour[map_position]',
+                                value: tour.map_position,
+                                label: t('.map_position'),
+                                help: t('.help_map_position'),
+                                placeholder: t('.placeholder_map_position'),
+                                required: true,
+                                errors: tour.errors.full_messages_for(:map_position)
+                            }) %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tabbable-custom ">
+                    <ul class="nav nav-tabs ">
+                        <li class="active">
+                            <a href="#tab_info" data-toggle="tab"> <%= t('.info') %> </a>
+                        </li>
+                        <li>
+                            <a href="#tab_images" data-toggle="tab"> <%= t('.tour_images') %> </a>
+                        </li>
+                        <li>
+                            <a href="#tab_content" data-toggle="tab"> <%= t('.content') %> </a>
+                        </li>
+                        <li>
+                            <a href="#tab_seo" data-toggle="tab"> <%= t('.seo') %> </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab_info">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <%= erp_form_control("text", {
+                                                name: 'tour[time_line]',
+                                                value: tour.time_line,
+                                                label: t('.time_line'),
+                                                help: t('.help_tour_time_line'),
+                                                placeholder: t('.placeholder_tour_time_line'),
+                                                required: true,
+                                                errors: tour.errors.full_messages_for(:time_line)
+                                            }) %>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <%= erp_form_control("text", {
+                                                name: 'tour[departure_schedule]',
+                                                value: tour.departure_schedule,
+                                                label: t('.departure_schedule'),
+                                                help: t('.help_tour_departure_schedule'),
+                                                placeholder: t('.placeholder_tour_departure_schedule')
+                                            }) %>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <%= erp_form_control('checkbox', {
+                                                name: 'tour[is_hot]',
+                                                id: 'tour_is_hot',
+                                                value: tour.is_hot,
+                                                not_selected_value: 'false',
+                                                label: t('.tour_is_hot'),
+                                                help: t('.help_tour_is_hot'),
+                                                options: [{value: 'true', text: t('.is_hot')}]
+                                            }) %>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <%= erp_form_control('checkbox', {
+                                                name: 'tour[is_discount]',
+                                                id: 'tour_is_discount',
+                                                value: tour.is_discount,
+                                                not_selected_value: 'false',
+                                                label: t('.tour_is_discount'),
+                                                help: t('.help_is_discount'),
+                                                options: [{value: 'true', text: t('.is_discount')}]
+                                            }) %>
+                                        </div>
+                                    </div>
+                                </div>                                
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <%= erp_form_control("number", {
+                                        name: 'tour[price_discount]',
+                                        value: tour.price_discount,
+                                        label: t('.price_discount'),
+                                        help: t('.help_price_discount'),
+                                        placeholder: t('.placeholder_price_discount'),
+                                        errors: tour.errors.full_messages_for(:price_discount)
+                                    }) %>
+                                </div>
+                                <div class="col-md-3">
+                                    <%= erp_form_control("number", {
+                                        name: 'tour[percent_discount]',
+                                        value: tour.percent_discount,
+                                        label: t('.percent_discount'),
+                                        help: t('.help_percent_discount'),
+                                        placeholder: t('.placeholder_percent_discount'),
+                                        errors: tour.errors.full_messages_for(:percent_discount)
+                                    }) %>
+                                </div>
+                                <div class="col-md-3">
+                                    <%= erp_form_control('date', {
+                                        label: t('.date_discount_start'),
+                                        name: 'tour[date_discount_start]',
+                                        value: tour.date_discount_start,
+                                        placeholder: t('.choose_date_discount_start')
+                                    }) %>
+                                </div>
+                                <div class="col-md-3">
+                                    <%= erp_form_control('date', {
+                                        label: t('.date_discount_end'),
+                                        name: 'tour[date_discount_end]',
+                                        value: tour.date_discount_end,
+                                        placeholder: t('.choose_date_discount_end'),
+                                        errors: tour.errors.full_messages_for(:date_discount_end)
+                                    }) %>
+                                </div>
+                            </div>                            
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <%= erp_form_control("textarea", {
+                                        name: 'tour[description]',
+                                        value: tour.description,
+                                        label: t('.description'),
+                                        placeholder: t('.enter_description')
+                                    }) %>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab_images">
+                            <%= erp_form_control("images", {
+                                name: 'tour[tour_images_attributes][__index__][image_url]',
+                                name_cache: 'tour[tour_images_attributes][__index__][image_url_cache]',
+                                id_name: 'tour[tour_images_attributes][__index__][id]',
+                                destroy_name: 'tour[tour_images_attributes][__index__][_destroy]',
+                                label: t('.images'),
+                                width: 150,
+                                height: 150,
+                                images: @tour.tour_images,
+                                origin_attribute: 'image_url',
+                                image_attribute: 'image_url.small',
+                                image_thumb: :small,
+                                hidden_params: [
+                                    {name: 'tour[tour_images_attributes][__index__][product_id]', value: @tour.id}
+                                ]
+                            }) %>
+                        </div>
+                        <div class="tab-pane" id="tab_content">
+                            <%= erp_form_control('fileinput', {
+                                label: t('.tour_program'),
+                                name: 'tour[tour_program]'
+                            }) %>
+                            <%= erp_form_control("editor", {
+                                name: 'tour[content]',
+                                label: t('.content'),
+                                value: tour.content,
+                                placeholder: t('.enter_content')
+                            }) %>                            
+                        </div>
+                        <div class="tab-pane" id="tab_seo">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <%= erp_form_control('image', {
+                                        img_src: tour.meta_image.small,
+                                        name: 'tour[meta_image]',
+                                        label: t('.meta_image'),
+                                        width: 150,
+                                        height: 150
+                                    }) %>
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="portlet light bordered">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <%= erp_form_control("textarea", {
+                                                    name: 'tour[meta_keywords]',
+                                                    value: tour.meta_keywords,
+                                                    placeholder: t('.enter_meta_keywords'),
+                                                    label: t('.meta_keywords')
+                                                }) %>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <%= erp_form_control("textarea", {
+                                                    name: 'tour[meta_description]',
+                                                    value: tour.meta_description,
+                                                    placeholder: t('.enter_meta_description'),
+                                                    label: t('.meta_description')
+                                                }) %>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%= erp_component('button/save', {
+        text: t('submit')
+    }) %>
+    <%= erp_component('button/cancel', {
+        text: t('cancel'),
+        href: erp_tours.backend_tours_path
+    }) %>
+<% end %>

@@ -1,45 +1,20 @@
 module Erp::Tours
-  class Category < ApplicationRecord
-		validates :name, :presence => true
-    belongs_to :creator, class_name: "Erp::User"
-    belongs_to :parent, class_name: "Erp::Tours::Category", optional: true
-    has_many :children, class_name: "Erp::Tours::Category", foreign_key: "parent_id", dependent: :destroy
-		has_many :tours, class_name: "Erp::Tours::Tour", dependent: :destroy
-		has_and_belongs_to_many :menus, class_name: "Erp::Tours::Menu"
+  class Tour < ApplicationRecord
+		mount_uploader :image_url, Erp::Tours::TourImageUploader
+		mount_uploader :meta_image, Erp::Tours::TourImageUploader
+		mount_uploader :tour_program, Erp::Tours::TourProgramUploader
 		
-    after_save :update_level
-
-    # get self and children ids
-    def get_self_and_children_ids
-      ids = [self.id]
-      ids += get_children_ids_recursive
-      return ids
+		validates :name, :category_id, :price, :time_line, :area_position, :map_position, :presence => true
+    belongs_to :creator, class_name: "Erp::User"
+    belongs_to :category, class_name: "Erp::Tours::Category"
+    
+    has_many :tour_images, dependent: :destroy
+    accepts_nested_attributes_for :tour_images, :reject_if => lambda { |a| a[:image_url].blank? and a[:image_url_cache].blank? }, :allow_destroy => true
+		
+		def self.get_active
+			self.where(archived: false)
 		end
-
-    # get children ids recursive
-    def get_children_ids_recursive
-      ids = []
-      children.each do |c|
-				if !c.children.empty?
-					ids += c.get_children_ids_recursive
-				end
-				ids << c.id
-			end
-      return ids
-		end
-
-    # update level
-    def update_level
-			level = 1
-			parent = self.parent
-			while parent.present?
-				level += 1
-				parent = parent.parent
-			end
-
-			level
-		end
-
+		
     # Filters
     def self.filter(query, params)
       params = params.to_unsafe_hash
@@ -76,8 +51,8 @@ module Erp::Tours
         end
       end
 
-      # join with parent categories table for search categories
-      query = query.joins("LEFT JOIN erp_tours_categories parents_erp_tours_categories ON parents_erp_tours_categories.id = erp_tours_categories.parent_id")
+      # join with categories table for search tours
+       query = query.joins(:category)
 			
 			# join with users table for search creator
       query = query.joins(:creator)
@@ -114,13 +89,8 @@ module Erp::Tours
         query = query.where('LOWER(name) LIKE ?', "%#{keyword}%")
       end
 
-      query = query.limit(8).map{|category| {value: category.id, text: category.name} }
+      query = query.limit(8).map{|tour| {value: tour.id, text: tour.name} }
     end
-    
-    # tour number
-    def tour_number
-			tours.count
-		end
 
     def archive
 			update_columns(archived: true)
@@ -137,32 +107,19 @@ module Erp::Tours
     def self.unarchive_all
 			update_all(archived: false)
 		end
-
-    # display name
-    def parent_name
-			parent.present? ? parent.name : ''
+    
+    def category_name
+			category.present? ? category.name : ''
 		end
 
-		# display name with parent
-    def full_name
-			names = [self.name]
-			p = self.parent
-			while !p.nil? do
-				names << p.name
-				p = p.parent
-			end
-			names.reverse.join(" >> ")
+    # display name
+    def tour_name
+			self.name
 		end
 
     # Get get all archive
     def self.all_unarchive
 			self.where(archived: false)
-		end
-    
-    # Get categories active
-    def self.get_parent_categories
-			self.where(archived: false)
-					.where(parent_id: nil).order(custom_order: 'ASC')
 		end
   end
 end

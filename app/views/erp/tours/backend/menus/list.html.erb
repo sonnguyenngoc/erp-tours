@@ -1,0 +1,145 @@
+<table class="table table-advance table-hover table-striped table-checkable order-column">
+    <thead>
+        <tr>
+            <th width='1%'>
+                <%= erp_datalist_check_all %>
+            </th>
+            <% if get_columns(params).include?("name") %>
+                <th class="sortable" sort-by='erp_tours_menus.name'>
+                    <%= t('.name') %>
+                </th>
+            <% end %>
+            <% if get_columns(params).include?("parent_name") %>
+                <th>
+                    <%= t('.parent_name') %>
+                </th>
+            <% end %>
+            <% if get_columns(params).include?("status") %>
+                <th>
+                    <%= t('status') %>
+                </th>
+            <% end %>
+            <% if get_columns(params).include?("creator") %>
+                <th>
+                    <%= t('creator') %>
+                </th>
+            <% end %>
+            <% if get_columns(params).include?("created_at") %>
+                <th class="sortable" sort-by='erp_tours_menus.created_at'>
+                    <%= t('created_at') %>
+                </th>
+            <% end %>
+            <th width="7%" class="sortable text-nowrap" sort-by='erp_tours_menus.custom_order'>
+                <%= t('.custom_order') %>                
+            </th>
+            <th width="7%"><%= t('actions') %></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @menus.each do |menu| %>
+            <tr class="odd gradeX">
+                <td>
+                    <%= erp_datalist_check_row(id: menu.id) %>
+                </td>
+                <% if get_columns(params).include?("name") %>
+                    <td>
+                        <%= link_to menu.name, erp_tours.edit_backend_menu_path(menu), class: 'title' %>                        
+                    </td>
+                <% end %>
+                <% if get_columns(params).include?("parent_name") %>
+                    <td>
+                        <%= menu.parent_name if menu.parent.present? %>
+                    </td>
+                <% end %>
+                <% if get_columns(params).include?("status") %>
+                <td>
+                    <% if menu.archived == true %>
+                        <%= erp_component('label/danger', {
+                            text: t('archived')
+                        }) %>                            
+                    <% else %>
+                        <%= erp_component('label/success', {
+                            text: t('active')
+                        }) %>
+                    <% end %>
+                    <% if menu.meta_image.present? && menu.meta_keywords.present? && menu.meta_description.present? %>
+                        <br><br>
+                        <%= t('.add_seo') %>
+                    <% end %>
+                </td>
+                <% end %>
+                <% if get_columns(params).include?("creator") %>
+                    <td>
+                        <%= erp_component('avatar', {
+                            user: menu.creator
+                        }) %>
+                    </td>
+                <% end %>
+                <% if get_columns(params).include?("created_at") %>
+                    <td><%= menu.created_at.strftime("%d/%m/%Y") %></td>
+                <% end %>
+                <td class="text-center text-semibold">
+                    <%= menu.custom_order %>
+                    <% if params[:sort_by] == 'erp_tours_menus.custom_order' %>
+                        <a data-method="PUT"
+                            href="<%=
+                                params[:sort_direction] == 'asc' ?
+                                erp_tours.move_up_backend_menus_path(id: menu) :
+                                erp_tours.move_down_backend_menus_path(id: menu)
+                            %>" class="ajax-link">
+                            <i class="fa fa-caret-square-o-up icon-big"></i>
+                        </a>
+                        <a data-method="PUT"
+                            href="<%=
+                                params[:sort_direction] == 'asc' ?
+                                erp_tours.move_down_backend_menus_path(id: menu) :
+                                erp_tours.move_up_backend_menus_path(id: menu)
+                            %>" class="ajax-link">
+                            <i class="fa fa-caret-square-o-down icon-big"></i>
+                        </a>
+                    <% end %>
+                </td>
+                <td class="text-right">
+                    <%= erp_datalist_row_actions(
+                        [
+                            {
+                                text: '<i class="fa fa-edit"></i> '+t('edit'),
+                                href: erp_tours.edit_backend_menu_path(menu)
+                            },
+                            {
+                                text: '<i class="fa fa-remove"></i> '+t('archive'),
+                                url: erp_tours.archive_backend_menus_path(id: menu.id),
+                                data_method: 'PUT',
+                                hide: menu.archived,
+                                class: 'ajax-link'
+                            },
+                            {
+                                text: '<i class="fa fa-check"></i> '+t('unarchive'),
+                                url: erp_tours.unarchive_backend_menus_path(id: menu.id),
+                                data_method: 'PUT',
+                                hide: !menu.archived,
+                                class: 'ajax-link'
+                            },
+                            {
+                                divider: true
+                            },
+                            {
+                                text: '<i class="fa fa-trash"></i> '+t('.delete'),
+                                url: erp_tours.backend_menu_path(menu),
+                                data_method: 'DELETE',
+                                class: 'ajax-link',
+                                data_confirm: t('delete_confirm')
+                            }
+                        ]
+                    ) %>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<% if @menus.empty? %>
+    <div class="datalist-empty-line"><%= t('.no_matching_records_found') %></div>
+<% end %>
+        
+<%= erp_datalist_pagination(@menus) %>

@@ -1,0 +1,89 @@
+<% content_for :title do %>
+    <%= t('.tours') %>
+<% end %>
+
+<% content_for :page_title do %>
+    <i class="fa fa-map-signs"></i> <%= t('.tours') %>
+<% end %>
+
+<% content_for :page_toolbar do %>
+    <%= erp_component('button/create', {
+        text: t('.create'),
+        href: erp_tours.new_backend_tour_path,
+        class: 'btn-noborder'
+    }) %>
+<% end %>
+
+<%= erp_datalist(
+    url: erp_tours.list_backend_tours_path,
+    keywords: [
+        {
+            text: t('.name'), name: 'erp_tours_tours.name'
+        },
+        {
+            text: t('.category'),
+            name: 'erp_tours_categories.name',
+            select: {
+                name: 'erp_tours_categories.id',
+                data_url: erp_tours.dataselect_backend_categories_path
+            }
+        },
+        {
+            text: t('creator'),
+            name: 'erp_users.name',
+            select: {
+                name: 'erp_users.id',
+                data_url: erp.dataselect_backend_users_path
+            }
+        }
+    ],
+    actions: [
+        {
+            text: '<i class="fa fa-ban"></i> '+t('archive'),
+            url: erp_tours.archive_all_backend_tours_path,
+            data_method: 'PUT',
+            data_confirm: t('.archive_confirm')
+        },
+        {
+            text: '<i class="fa fa-check"></i> '+t('unarchive'),
+            url: erp_tours.unarchive_all_backend_tours_path,
+            data_method: 'PUT',
+            data_confirm: t('.unarchive_confirm')
+        },
+        {
+            divider: true
+        },
+        {
+            text: '<i class="fa fa-trash"></i> '+t('.delete'),
+            url: erp_tours.delete_all_backend_tours_path,
+            data_method: 'DELETE',
+            data_confirm: t('delete_confirm')
+        }
+    ],
+    filters: [
+        {
+            text: t('archived'), name: 'show_archived', value: true, checked: false
+        },
+    ],
+    columns: [
+        {
+            text: t('.name'), name: 'name', value: true, checked: true
+        },
+        {
+            text: t('.category'), name: 'category', value: true, checked: true
+        },
+        {
+            text: t('.price'), name: 'price', value: true, checked: true
+        },
+        {
+            text: t('status'), name: 'status', value: true, checked: true
+        },
+        {
+            text: t('creator'), name: 'creator', value: true, checked: false
+        },
+        {
+            text: t('created_at'), name: 'created_at', value: true, checked: false
+        }
+    ],
+    sort: { sort_by: 'erp_tours_tours.created_at', sort_direction: 'desc' }
+) %>

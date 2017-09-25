@@ -2,6 +2,100 @@ vi:
   erp:
     tours:
       backend:
+        tours:
+          create:
+            success: "Thêm tour du lịch thành công."
+          update:
+            success: "Cập nhật tour du lịch thành công."
+          destroy:
+            success: "Xóa tour du lịch thành công."
+          delete_all:
+            success: "Xóa tour du lịch được chọn thành công."
+          archive:
+            success: "Ẩn tour du lịch thành công."
+          unarchive:
+            success: "Hiện tour du lịch thành công."
+          archive_all:
+            success: "Ẩn tour du lịch được chọn thành công."
+          unarchive_all:
+            success: "Hiện tour du lịch được chọn thành công."
+          index:
+            tours: "Danh sách tour"                        
+            create: "Thêm tour du lịch"
+            delete: "Xóa tour du lịch"
+            name: "Tên tour du lịch"
+            category: "Chuyên mục tour"
+            price: "Giá tour du lịch"
+            archive_confirm: "Bạn có chắc muốn ẩn các tour này?"
+            unarchive_confirm: "Bạn có muốn hiện lại các tour này?"            
+          list:
+            delete: "Xóa tour du lịch"
+            name: "Tên tour du lịch"
+            category: "Chuyên mục tour"
+            price: "Giá tour du lịch"
+            no_matching_records_found: "Danh sách tour du lịch hiện tại đang trống."
+            archive_confirm: "Bạn có chắc muốn ẩn tour này?"
+            unarchive_confirm: "Bạn có muốn hiện lại tour này?"
+          new:
+            tours: "Danh sách tour"
+            create: "Thêm tour du lịch"
+          edit:
+            tours: "Danh sách tour"
+            create: "Thêm tour du lịch"
+          form:
+            name: "Tên tour du lịch"
+            time_line: "Độ dài 1 tour du lịch"
+            help_tour_time_line: "Độ dài từ khi tour bắt đầu đến khi tour kết thúc. Ex: 3 Ngày 2 Đêm"
+            placeholder_tour_time_line: "Nhập độ dài 1 tour du lịch tại đây..."
+            placeholder_tour_name: "Nhập tour du lịch..."
+            departure_schedule: "Lịch khởi hành"
+            help_tour_departure_schedule: "Khi chưa có lịch khởi hành chi tiết sẽ sử dụng nội dung cột này để hiển thị. Ex: Khởi hành thứ 3, 5, 7, chủ nhật mỗi tháng"
+            placeholder_tour_departure_schedule: "Nhập lịch khởi hành"
+            help_tour_name: "Tên tour du lịch"
+            price: "Giá tour du lịch"
+            help_tour_price: "Là giá tour du lịch hiển thị ngoài website"
+            placeholder_tour_price: "Nhập giá tour du lịch"
+            description: "Mô tả tour du lịch"
+            enter_description: "Nhập mô tả tour du lịch (Ngắn)"
+            category: "Chuyên mục tour"
+            choose_category: "Chọn chuyên mục tour"
+            create_category: "Thêm chuyên mục tour"
+            edit_category: "Cập nhật chuyên mục tour"
+            help_category: "Tour du lịch thuộc chuyên mục nào?"
+            info: "Thông tin chung"
+            content: "Nội dung chuyến tour"
+            enter_content: "Nhập nội dung giới thiệu chi tiết chuyến tour...."
+            tour_is_hot: "Tour hot"
+            is_hot: "Tour đang hot"
+            help_tour_is_hot: "Chọn tour hot để hiển thị ngoài trang chủ"
+            tour_is_discount: "Tour giảm giá"
+            is_discount: "Tour đang giảm giá"
+            help_is_discount: "Chọn tour đang giảm giá để hiển thị thông tin khuyến mãi"
+            price_discount: "Giá đã giảm"
+            help_price_discount: "Yêu cầu chọn tour đang giảm giá"
+            placeholder_price_discount: "Nhập giá tour đã giảm"
+            percent_discount: "Phần trăm giảm giá"
+            help_percent_discount: "Yêu cầu chọn tour đang giảm giá"
+            placeholder_percent_discount: "Nhập phần trăm giảm giá"
+            date_discount_start: "Ngày bắt đầu giảm giá"
+            choose_date_discount_start: "Chọn ngày bắt đầu giảm giá"
+            date_discount_end: "Ngày kết thúc giảm giá"
+            choose_date_discount_end: "Chọn ngày kết thúc giảm giá"
+            seo: "Thông tin seo"
+            meta_image: "Hình ảnh share"
+            meta_keywords: "SEO - Từ khóa"
+            enter_meta_keywords: "Nhập từ khóa SEO cho tour du lịch. ~ 10 từ khóa được ngăn cách bởi dấu Phẩy"
+            meta_description: "SEO - Mô tả ngắn"
+            enter_meta_description: "Nhập đoạn mô tả SEO cho tour du lịch. Mô tả < 150 ký tự"
+            area_position: "Vị trí tour du lịch"
+            help_area_position: "Vị trí mà tour du lịch sẽ đến"
+            placeholder_area_position: "Nhập vị trí tour du lịch"
+            map_position: "Vị trí trên bản đồ"
+            help_map_position: "Vị trí tour du lịch trên bản đồ"
+            placeholder_map_position: "Nhập vị trí trên bản đồ tour du lịch"
+            tour_images: "Hình ảnh tour"
+            images: "Thêm hình ảnh tour du lịch"
+            tour_program: "Upload chương trình tour (File: PDF, Doc, Dox)"
         categories:
           create:
             success: "Thêm chuyên mục thành công."
@@ -49,3 +143,98 @@ vi:
             enter_description: "Nhập mô tả chuyên mục"
             parent_category: "Chuyên mục cha"
             choose_parent_category: "Chọn chuyên mục cha"
+        menus:
+          create:
+            success: "Thêm menu thành công."
+          update:
+            success: "Cập nhật menu thành công."
+          destroy:
+            success: "Xóa menu thành công."
+          delete_all:
+            success: "Xóa menu được chọn thành công."
+          archive:
+            success: "Ẩn menu thành công."
+          unarchive:
+            success: "Hiện menu thành công."
+          archive_all:
+            success: "Ẩn menu được chọn thành công."
+          unarchive_all:
+            success: "Hiện menu được chọn thành công."
+          index:
+            menus: "Danh sách menu"                        
+            create: "Thêm menu"
+            delete: "Xóa menu"
+            name: "Tên menu"
+            parent_name: "Menu cha"
+            archive_confirm: "Bạn có chắc muốn ngưng sử dụng các menu này?"
+            unarchive_confirm: "Bạn có muốn sử dụng lại các menu này?"
+          list:
+            delete: "Xóa menu"
+            name: "Tên menu"
+            parent_name: "Menu cha"
+            no_matching_records_found: "Danh sách menu hiện tại đang trống."
+            archive_confirm: "Bạn có chắc muốn ngưng sử dụng menu này?"
+            unarchive_confirm: "Bạn có muốn sử dụng lại menu này?"
+            custom_order: "Sắp xếp"
+          new:
+            menus: "Danh sách menu"   
+            create: "Thêm menu"
+          edit:
+            menus: "Danh sách menu"   
+            create: "Thêm menu"
+          form:
+            name: "Tên menu"
+            enter_name: "Nhập tên menu..."
+            description: "Mô tả menu"
+            enter_description: "Nhập mô tả menu"
+            parent_menu: "Menu cha"
+            choose_parent_menu: "Chọn menu cha"
+            create_menu: "Thêm menu"
+            edit_menu: "Cập nhật menu"
+            add_category: "Thêm chuyên mục liên quan"
+            related_categories: "Chuyên mục liên quan"
+            choose_related_categories: "Chọn chuyên mục liên quan"
+            create_category: "Thêm chuyên mục"
+            edit_category: "Cập nhật chuyên mục"
+            meta_image: "Hình ảnh share"
+            meta_keywords: "SEO - Từ khóa"
+            enter_meta_keywords: "Nhập từ khóa SEO cho tour du lịch. ~ 10 từ khóa được ngăn cách bởi dấu Phẩy"
+            meta_description: "SEO - Mô tả ngắn"
+            enter_meta_description: "Nhập đoạn mô tả SEO cho tour du lịch. Mô tả < 150 ký tự"
+  activerecord:
+    errors:
+      models:
+        erp/tours/tour:
+          attributes:
+            name:
+              blank: "không được để trống."
+            category_id:
+              blank: "không được để trống."
+            price:
+              blank: "không được để trống."
+            area_position:
+              blank: "không được để trống."
+            map_position:
+              blank: "không được để trống."
+            time_line:
+              blank: "không được để trống."
+        erp/tours/category:
+          attributes:
+            name:
+              blank: "không được để trống."
+        erp/tours/menu:
+          attributes:
+            name:
+              blank: "không được để trống."
+    attributes:
+      erp/tours/tour:
+        name: "Tên tour du lịch"
+        category_id: "Chuyên mục tour"
+        price: "giá tour du lịch"
+        area_position: "Vị trí tour du lịch"
+        map_position: "Vị trí trên bản đồ"
+        time_line: "Độ dài 1 tour du lịch"
+      erp/tours/category:
+        name: "Tên thương hiệu"
+      erp/tours/menu:
+        name: "Tên menu"

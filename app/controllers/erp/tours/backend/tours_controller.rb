@@ -19,10 +19,18 @@ module Erp
         # GET /tours/new
         def new
           @tour = Tour.new
+          20.times do
+            @tour.tour_images.build
+          end
+          @tour.date_discount_start = ''
+          @tour.date_discount_end = ''
         end
     
         # GET /tours/1/edit
         def edit
+          (20 - @tour.tour_images.count).times do
+            @tour.tour_images.build
+          end
         end
     
         # POST /tours
@@ -166,15 +174,21 @@ module Erp
     
           # Only allow a trusted parameter "white list" through.
           def tour_params
-            params.fetch(:tour, {}).permit(:image_url, :name, :price, :is_hot, :description, :content,
-                                          :tour_program, :category_id,
-                                          # info schedule
-                                          :time_line, :departure_schedule,
-                                          # info discount 
-                                          :is_discount, :price_discount, :percent_discount,
-                                          :date_discount_start, :date_discount_end
-                                          # info SEO
-                                          :meta_image, :meta_keywords, :meta_description)
+            params.fetch(:tour, {}).permit(
+                                          # TOUR INFO
+                                          :image_url, :name, :price, :description, :content,
+                                          :tour_program, :category_id, :area_position, :map_position,
+                                          # TOUR CHECK STATUS
+                                          :is_hot,
+                                          # TOUR DISCOUNT
+                                          :is_discount, :price_discount, :price_discount,
+                                          :date_discount_start, :date_discount_end,
+                                          # TOUR SCHEDULE
+                                          :departure_schedule, :time_line,                                          
+                                          # TOUR SEO
+                                          :meta_image,:meta_keywords, :meta_description,
+                                          # TOUR IMAGES
+                                          :tour_images_attributes => [:id, :image_url, :image_url_cache, :tour_id, :_destroy])
           end
       end
     end

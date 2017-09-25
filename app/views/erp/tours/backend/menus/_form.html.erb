@@ -1,0 +1,130 @@
+<%= form_for([erp_tours, :backend, menu], html: {multipart: true}) do |f| %>
+    <div class="form-body">        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="portlet light bordered">
+                    <div class="portlet-body form">
+                        <%= erp_form_control("text", {
+                            name: 'menu[name]',
+                            value: menu.name,                   
+                            label: t('.name'),
+                            placeholder: t('.enter_name'),
+                            required: true,
+                            errors: menu.errors.full_messages_for(:name)
+                        }) %>
+                        <%= erp_form_control("dataselect", {
+                            name: 'menu[parent_id]',
+                            value: menu.parent_id,
+                            text: menu.parent_name,
+                            placeholder: t('.choose_parent_menu'),
+                            label: t('.parent_menu'),
+                            url: erp_tours.dataselect_backend_menus_path(format: 'json'),
+                            create: {
+                                url: erp_tours.new_backend_menu_path,
+                                title: t('.create_menu'),
+                                container_selector: '.new_menu',
+                                input_selector: 'input[name="menu[name]"]'
+                            },
+                            edit: {
+                                url: erp_tours.edit_backend_menu_path(id: ':value'),
+                                title: t('.edit_menu'),
+                                container_selector: '.edit_menu',
+                            }
+                        }) %>                                                                                  
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="portlet light bordered">
+                    <div class="portlet-body form">
+                        <%= erp_form_control("textarea", {
+                            name: 'menu[description]',
+                            value: menu.description,                   
+                            label: t('.description'),
+                            placeholder: t('.enter_description')
+                        }) %>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tabbable-custom ">
+                    <ul class="nav nav-tabs ">
+                        <li class="active">
+                            <a href="#tab_category" data-toggle="tab"> <%= t('.add_category') %> </a>
+                        </li>
+                        <li>
+                            <a href="#tab_seo" data-toggle="tab"> <%= t('.add_category') %> </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content order-details">
+                        <div class="tab-pane addableform-table active" id="tab_category">
+                            <%= erp_form_control("dataselect", {
+                                name: 'menu[category_ids][]',
+                                values: (menu.categories.map {|category| {text: category.name, value: category.id}}),
+                                multiple: true,
+                                label: t('.related_categories'),
+                                placeholder: t('.choose_related_categories'),
+                                url: erp_tours.dataselect_backend_categories_path(format: 'json'),
+                                create: {
+                                    url: erp_tours.new_backend_category_path,
+                                    title: t('.create_category'),
+                                    container_selector: '.new_category',
+                                    input_selector: 'input[name="category[name]"]'
+                                },
+                                edit: {
+                                    url: erp_tours.edit_backend_category_path(id: ':value'),
+                                    title: t('.edit_category'),
+                                    container_selector: '.edit_category',
+                                }
+                            }) %>
+                        </div>
+                        <div class="tab-pane" id="tab_seo">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <%= erp_form_control('image', {
+                                        img_src: menu.meta_image.small,
+                                        name: 'menu[meta_image]',
+                                        label: t('.meta_image'),
+                                        width: 150,
+                                        height: 150
+                                    }) %>
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="portlet light bordered">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <%= erp_form_control("textarea", {
+                                                    name: 'menu[meta_keywords]',
+                                                    value: menu.meta_keywords,                   
+                                                    label: t('.meta_keywords'),
+                                                    placeholder: t('.enter_meta_keywords')
+                                                }) %>                                                
+                                            </div>
+                                            <div class="col-md-6">
+                                                <%= erp_form_control("textarea", {
+                                                    name: 'menu[meta_description]',
+                                                    value: menu.meta_description,                   
+                                                    label: t('.meta_description'),
+                                                    placeholder: t('.enter_meta_description')
+                                                }) %>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </div>
+    <%= erp_component('button/save', {
+        text: t('submit')
+    }) %>
+    <%= erp_component('button/cancel', {
+        text: t('cancel'),
+        href: erp_tours.backend_menus_path
+    }) %>
+<% end %>
