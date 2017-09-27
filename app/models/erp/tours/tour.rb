@@ -4,7 +4,7 @@ module Erp::Tours
 		mount_uploader :meta_image, Erp::Tours::TourImageUploader
 		mount_uploader :tour_program, Erp::Tours::TourProgramUploader
 		
-		validates :name, :category_id, :price, :time_line, :area_position, :map_position, :presence => true
+		validates :name, :category_id, :transportation, :price, :time_line, :area_position, :map_position, :presence => true
     belongs_to :creator, class_name: "Erp::User"
     belongs_to :category, class_name: "Erp::Tours::Category"
     
@@ -13,6 +13,14 @@ module Erp::Tours
 		
 		def self.get_active
 			self.where(archived: false)
+		end
+		
+		def self.get_discount_tours
+			self.get_active.where(is_discount: true)
+		end
+		
+		def self.get_hot_tours
+			self.get_active.where(is_hot: true)
 		end
 		
     # Filters

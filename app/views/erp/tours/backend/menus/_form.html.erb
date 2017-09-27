@@ -57,6 +57,9 @@
                         <li>
                             <a href="#tab_seo" data-toggle="tab"> <%= t('.add_category') %> </a>
                         </li>
+                        <li>
+                            <a href="#tab_main_menu" data-toggle="tab"> <%= t('.main_menu') %> </a>
+                        </li>
                     </ul>
                     <div class="tab-content order-details">
                         <div class="tab-pane addableform-table active" id="tab_category">
@@ -109,6 +112,36 @@
                                                     label: t('.meta_description'),
                                                     placeholder: t('.enter_meta_description')
                                                 }) %>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab_main_menu">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <%= erp_form_control('image', {
+                                        img_src: menu.icon_main,
+                                        name: 'menu[icon_main]',
+                                        label: t('.icon_main'),
+                                        width: 50,
+                                        height: 50
+                                    }) %>
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="portlet light bordered">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <%= erp_form_control('checkbox', {
+                                                    name: 'menu[is_main]',
+                                                    id: 'menu_is_main',
+                                                    value: menu.is_main,
+                                                    not_selected_value: 'false',
+                                                    label: t('.menu_is_main'),
+                                                    help: t('.help_is_main'),
+                                                    options: [{value: 'true', text: t('.is_main')}]
+                                                }) %>                                               
                                             </div>
                                         </div>
                                     </div>

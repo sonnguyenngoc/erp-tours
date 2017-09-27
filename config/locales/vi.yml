@@ -96,6 +96,9 @@ vi:
             tour_images: "Hình ảnh tour"
             images: "Thêm hình ảnh tour du lịch"
             tour_program: "Upload chương trình tour (File: PDF, Doc, Dox)"
+            transportation: "Phương tiện"
+            help_tour_transportation: "Phương tiện dành cho tour du lịch này"
+            placeholder_tour_transportation: "Nhập phương tiện"
         categories:
           create:
             success: "Thêm chuyên mục thành công."
@@ -201,6 +204,11 @@ vi:
             enter_meta_keywords: "Nhập từ khóa SEO cho tour du lịch. ~ 10 từ khóa được ngăn cách bởi dấu Phẩy"
             meta_description: "SEO - Mô tả ngắn"
             enter_meta_description: "Nhập đoạn mô tả SEO cho tour du lịch. Mô tả < 150 ký tự"
+            icon_main: "Icon menu chính"
+            menu_is_main: "Menu chính"
+            help_is_main: "Chọn menu chính để hiển thị ngoài trang chủ"
+            is_main: "Đây là menu chính"
+            main_menu: "Menu chính"
   activerecord:
     errors:
       models:
@@ -218,6 +226,8 @@ vi:
               blank: "không được để trống."
             time_line:
               blank: "không được để trống."
+            transportation:
+              blank: "không được để trống."
         erp/tours/category:
           attributes:
             name:
@@ -234,6 +244,7 @@ vi:
         area_position: "Vị trí tour du lịch"
         map_position: "Vị trí trên bản đồ"
         time_line: "Độ dài 1 tour du lịch"
+        transportation: "Phương tiện"
       erp/tours/category:
         name: "Tên thương hiệu"
       erp/tours/menu:

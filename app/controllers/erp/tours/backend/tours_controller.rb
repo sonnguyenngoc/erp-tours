@@ -176,12 +176,12 @@ module Erp
           def tour_params
             params.fetch(:tour, {}).permit(
                                           # TOUR INFO
-                                          :image_url, :name, :price, :description, :content,
-                                          :tour_program, :category_id, :area_position, :map_position,
+                                          :image_url, :name, :price, :description, :content, :star,
+                                          :tour_program, :category_id, :area_position, :map_position, :transportation,
                                           # TOUR CHECK STATUS
                                           :is_hot,
                                           # TOUR DISCOUNT
-                                          :is_discount, :price_discount, :price_discount,
+                                          :is_discount, :price_discount, :percent_discount,
                                           :date_discount_start, :date_discount_end,
                                           # TOUR SCHEDULE
                                           :departure_schedule, :time_line,                                          

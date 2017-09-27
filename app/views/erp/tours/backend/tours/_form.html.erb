@@ -23,7 +23,7 @@
                                 errors: tour.errors.full_messages_for(:name)
                             }) %>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <%= erp_form_control("dataselect", {
                                 name: 'tour[category_id]',
                                 value: tour.category_id,
@@ -47,9 +47,7 @@
                                 errors: tour.errors.full_messages_for(:category_id)
                             }) %>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <%= erp_form_control("number", {
                                 name: 'tour[price]',
                                 value: tour.price,
@@ -58,6 +56,19 @@
                                 placeholder: t('.placeholder_tour_price'),
                                 required: true,
                                 errors: tour.errors.full_messages_for(:price)
+                            }) %>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <%= erp_form_control("text", {
+                                name: 'tour[transportation]',
+                                value: tour.transportation,
+                                label: t('.transportation'),
+                                help: t('.help_tour_transportation'),
+                                placeholder: t('.placeholder_tour_transportation'),
+                                required: true,
+                                errors: tour.errors.full_messages_for(:transportation)
                             }) %>
                         </div>
                         <div class="col-md-4">

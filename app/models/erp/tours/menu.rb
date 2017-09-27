@@ -2,6 +2,7 @@ module Erp::Tours
   class Menu < ApplicationRecord
     include Erp::CustomOrder
     mount_uploader :meta_image, Erp::Tours::MenuImageUploader
+    mount_uploader :icon_main, Erp::Tours::IconMenuUploader
     
     validates :name, :presence => true
     belongs_to :creator, class_name: "Erp::User"
@@ -19,6 +20,10 @@ module Erp::Tours
     
     def self.get_main_menus
 			self.get_active.where(parent_id: nil)
+		end
+    
+    def self.get_home_menus
+			self.get_active.where(is_main: true)
 		end
     
     after_save :update_level
@@ -223,16 +228,9 @@ module Erp::Tours
 			self.update_column(:cache_search, str.join(" ") + " " + str.join(" ").to_ascii)
 		end
 		
-		def get_tours_for_categories(params)
-			records = Erp::Tours::Tours.get_active
+		def get_tours
+			records = Erp::Tours::Tour.get_active
 												.where(category_id: self.get_all_related_category_ids)
-
-			if params[:sort_by].present?
-				records = records.order(params[:sort_by].gsub('_', ' '))
-			else
-				records = records.order("created_at DESC")
-			end
-
 			return records
 		end
 		

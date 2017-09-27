@@ -16,6 +16,8 @@ class CreateErpToursTours < ActiveRecord::Migration[5.1]
       t.string :departure_schedule
       t.text :description
       t.text :content
+      t.string :transportation
+      t.integer :star
       t.string :tour_program
       t.string :meta_image
       t.string :meta_keywords
