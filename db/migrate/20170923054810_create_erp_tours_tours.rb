@@ -10,6 +10,7 @@ class CreateErpToursTours < ActiveRecord::Migration[5.1]
       t.datetime :date_discount_start
       t.datetime :date_discount_end
       t.boolean :is_hot
+      t.string :hotel
       t.string :time_line
       t.string :area_position
       t.string :map_position
