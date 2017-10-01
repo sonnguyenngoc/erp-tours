@@ -4,7 +4,7 @@ module Erp::Tours
 		mount_uploader :meta_image, Erp::Tours::TourImageUploader
 		mount_uploader :tour_program, Erp::Tours::TourProgramUploader
 		
-		validates :name, :category_id, :transportation, :price, :time_line, :area_position, :map_position, :presence => true
+		validates :name, :category_id, :hotel, :transportation, :price, :time_line, :area_position, :map_position, :presence => true
     belongs_to :creator, class_name: "Erp::User"
     belongs_to :category, class_name: "Erp::Tours::Category"
     

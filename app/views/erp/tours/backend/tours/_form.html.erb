@@ -60,7 +60,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <%= erp_form_control("text", {
                                 name: 'tour[transportation]',
                                 value: tour.transportation,
@@ -71,7 +71,7 @@
                                 errors: tour.errors.full_messages_for(:transportation)
                             }) %>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <%= erp_form_control("text", {
                                 name: 'tour[area_position]',
                                 value: tour.area_position,
@@ -82,7 +82,17 @@
                                 errors: tour.errors.full_messages_for(:area_position)
                             }) %>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
+                            <%= erp_form_control("text", {
+                                name: 'tour[hotel]',
+                                value: tour.hotel,
+                                label: t('.hotel_resort'),        
+                                placeholder: t('.placeholder_hotel_resort'),
+                                required: true,
+                                errors: tour.errors.full_messages_for(:area_position)
+                            }) %>
+                        </div>
+                        <div class="col-md-3">
                             <%= erp_form_control("text", {
                                 name: 'tour[map_position]',
                                 value: tour.map_position,

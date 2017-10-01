@@ -99,6 +99,8 @@ vi:
             transportation: "Phương tiện"
             help_tour_transportation: "Phương tiện dành cho tour du lịch này"
             placeholder_tour_transportation: "Nhập phương tiện"
+            hotel_resort: "Khách sạn/Resort"
+            placeholder_hotel_resort: "Nhập tên khách sạn/resort"
         categories:
           create:
             success: "Thêm chuyên mục thành công."
@@ -228,6 +230,8 @@ vi:
               blank: "không được để trống."
             transportation:
               blank: "không được để trống."
+            hotel:
+              blank: "không được để trống."
         erp/tours/category:
           attributes:
             name:
@@ -245,6 +249,7 @@ vi:
         map_position: "Vị trí trên bản đồ"
         time_line: "Độ dài 1 tour du lịch"
         transportation: "Phương tiện"
+        hotel: "Khách sạn/Resort"
       erp/tours/category:
         name: "Tên thương hiệu"
       erp/tours/menu:

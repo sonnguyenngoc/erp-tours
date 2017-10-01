@@ -176,7 +176,7 @@ module Erp
           def tour_params
             params.fetch(:tour, {}).permit(
                                           # TOUR INFO
-                                          :image_url, :name, :price, :description, :content, :star,
+                                          :image_url, :name, :price, :description, :content, :hotel, :star,
                                           :tour_program, :category_id, :area_position, :map_position, :transportation,
                                           # TOUR CHECK STATUS
                                           :is_hot,
