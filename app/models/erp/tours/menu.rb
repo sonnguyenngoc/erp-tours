@@ -231,8 +231,6 @@ module Erp::Tours
 		def get_tours
 			records = Erp::Tours::Tour.get_active
 												.where(category_id: self.get_all_related_category_ids)
-      if params[:tour_name].present?
-      end
 			return records
 		end
 		
@@ -241,7 +239,7 @@ module Erp::Tours
 												.where(category_id: self.get_all_related_category_ids)
 												
       if params[:tour_name].present?
-        records = query.where('LOWER(name) LIKE ?', '%'+params[:tour_name]+'%')
+        records = records.where('LOWER(name) LIKE ?', '%'+params[:tour_name]+'%')
       end
       
 			return records

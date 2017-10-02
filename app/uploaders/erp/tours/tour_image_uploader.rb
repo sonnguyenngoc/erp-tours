@@ -57,6 +57,9 @@ module Erp
 			version :large do
 				process :resize_to_fill => [750, 400]
 			end
+			version :img_seo do
+				process :resize_to_fill => [940, 492]
+			end
     end
   end
 end
