@@ -1,5 +1,5 @@
 module Erp::Tours
-  class TourMailer < ApplicationMailer
+  class TourMailer < Erp::ApplicationMailer
     helper Erp::ApplicationHelper
     
     def sending_admin_email_tour_confirmation(tour_booking)
