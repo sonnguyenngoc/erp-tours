@@ -6,7 +6,7 @@ module Erp::Tours
       @recipients = ['Sơn Nguyễn <sonnn@hoangkhang.com.vn>']
       
       @tour_booking = tour_booking
-      send_email(@recipients.join("; "), "[ThichLaDi.Info] -#{Time.current.strftime('%Y%m%d')}- ĐẶT TOUR TỪ WEBSITE THICHLADI.INFO")
+      send_email(@recipients.join("; "), "[THICHLADI.INFO] -#{Time.current.strftime('%Y%m%d')}- ĐẶT TOUR TỪ WEBSITE THICHLADI.INFO")
     end
     
     def sending_customer_email_tour_confirmation(tour_booking)
